@@ -41,6 +41,7 @@ app.use(cors());
 // assign the db collection to the req object
 app.use((req, res, next) => {
   const collection = req.app.locals[config.dbCollection];
+  global.mogoDBCollection = collection;
   req.collection = collection;
   next();
 });
