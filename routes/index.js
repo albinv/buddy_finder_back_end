@@ -21,6 +21,7 @@ router.get('/all-students', (req, res, next) => {
 // endpoint to get a list of all the students in the db
 router.get('/invoke-matching-process', (req, res, next) => {
   matchingProcess();
+  res.send("done")
 });
 
 // Endpoint to add a new student
@@ -153,10 +154,11 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-  let html_text = '<p> Hi ' + recipient.name + ',<p><br><br>' +
-  '<h1>A new Study Buddy has been found for you, you share '+ commonModulesNo + ' modules together! <h1><br>' +
-  '<p>Their name is: ' + buddy.name + ' and you can contact them via email: ' + buddy.email + '<p><br><br><br>' +
-  '<p>Thanks for using this service<p><br><p>University of Liverpool<p>'
+  let html_text = '<h2> Hi ' + recipient.name + ',</h2><br><br>' +
+  '<h1>A new Study Buddy has been found for you!! </h1><br><br>' +
+  '<h2>You share '+ commonModulesNo + ' modules together. </h2><br>' +
+  '<h2>Their name is ' + buddy.name + ' and you can contact them via their email: ' + buddy.email + '</h2><br><br><br>' +
+  '<h2>Thank you for using this service,</h2><br><h2>University of Liverpool</h2>'
   
   var mailOptions = {
     from: 'uol.studybuddyfinder@gmail.com',
@@ -185,9 +187,9 @@ function sendMatchNotFoundEmail(student){
     }
   });
   
-    let html_text = '<p> Hi ' + student.name + ',<p><br><br>' +
-    '<h1>Unfortuatly we weren\'t able to find you a study buddy at this time. Please register again tomorrow if you wish to use this service again<br>'+
-    '<p>Thanks for using this service<p><br><p>University of Liverpool<p>'
+    let html_text = '<h2> Hi ' + recipient.name + ',</h2><br><br>' +
+    '<h2>Unfortuatly we weren\'t able to find you a study buddy at this time. Please register again tomorrow if you wish to use this service again</h2><br><br>'+
+    '<h2>Thank you for using this service,</h2><br><h2>University of Liverpool</h2>'
     
     var mailOptions = {
       from: 'uol.studybuddyfinder@gmail.com',
