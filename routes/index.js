@@ -6,9 +6,13 @@ const schedule = require('node-schedule');
 const  ObjectID  = require('mongodb').ObjectId;
 var nodemailer = require('nodemailer');
 
+// Gmail details for email server
 // email: uol.studybuddyfinder@gmail.com
 // pass:  studybuddyfinder591
 
+
+
+//============= ** Remove/Comment for PROD version ** //=============
 // endpoint to get a list of all the students in the db
 router.get('/all-students', (req, res, next) => {
   // get all records from DB by not providing a search filter
@@ -23,6 +27,10 @@ router.get('/invoke-matching-process', (req, res, next) => {
   matchingProcess();
   res.send("done")
 });
+//====================================================================
+
+
+
 
 // Endpoint to add a new student
 router.post('/add-student', (req, res, next) => {
@@ -157,7 +165,9 @@ var transporter = nodemailer.createTransport({
   let html_text = '<h2> Hi ' + recipient.name + ',</h2><br><br>' +
   '<h1>A new Study Buddy has been found for you!! </h1><br><br>' +
   '<h2>You share '+ commonModulesNo + ' modules together. </h2><br>' +
-  '<h2>Their name is ' + buddy.name + ' and you can contact them via their email: ' + buddy.email + '</h2><br><br><br>' +
+  '<h2>Their name is ' + buddy.name + ' and you can contact them via their email: ' + buddy.email + '</h2><br>' +
+  '<h2>You can send them topics you\'d like to discuss, what you need help with and also topics you may be able to offer help with.</h2>' +
+  '<br><br><br>' +
   '<h2>Thank you for using this service,</h2><br><h2>University of Liverpool</h2>'
   
   var mailOptions = {
