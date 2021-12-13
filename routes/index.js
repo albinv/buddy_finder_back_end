@@ -54,8 +54,6 @@ var job = schedule.scheduleJob({hour: 00, minute: 00}, function(){
   matchingProcess();
 });
 
-
-
 async function matchingProcess() {
   // Get a list of all students currently in db
   let allStudents = await mogoDBCollection.find({}).toArray();
